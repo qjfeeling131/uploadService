@@ -1,18 +1,18 @@
 import time
 import uuid
 from documentService.dbHelper import SQLHelper
-class digitalAsset:
+class digitalAsset(object):
     
-    id=str(uuid.uuid4())
-    name=''
-    contentType=''
-    createTime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    createByUserId=''
-    modifyTime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    modifyByUserId=''
-    path=''
-    size=0
-    extension=''
+    # id=str(uuid.uuid4())
+    # name=''
+    # contentType=''
+    # createTime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    # createByUserId=''
+    # modifyTime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    # modifyByUserId=''
+    # path=''
+    # size=0
+    # extension=''
 
     def create(self):
         try:
@@ -23,15 +23,16 @@ class digitalAsset:
         finally:
             db.release()
 
-    # __init__(self,name,contentType,createByUserId,modifyByUserId,path,size,extension):
-
-    # self.name=name
-    # self.contentType=contentType
-    # self.createByUserId=createByUserId
-    # self.modifyByUserId=modifyByUserId
-    # self.path=path
-    # self.size=size
-    # self.extension=extension
+    def __init__(self,name,contentType,createByUserId,createTime,modifyByUserId,modifyTime,path,size,extension):
+        self.name=name
+        self.contentType=contentType
+        self.createByUserId=createByUserId
+        self.createTime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        self.modifyTime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        self.modifyByUserId=modifyByUserId
+        self.path=path
+        self.size=size
+        self.extension=extension
 
 class restResult(object):
     

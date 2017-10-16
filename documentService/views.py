@@ -19,7 +19,6 @@ class UploadFile(APIView):
     parser_classes=(FileUploadParser, )
 
     def post(self,request,format=None):
-        # file_obj=request.data['file']
         tokenHeader=request.META['HTTP_AUTHORIZATION']
         authorize=authorization(tokenHeader)
         result= authorize.sendRequest()
