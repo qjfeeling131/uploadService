@@ -6,13 +6,13 @@ from documentService.dbHelper import SQLHelper
 class digitalAssetSerializer(serializers.Serializer):
     name=serializers.CharField(max_length=30)
     contentType=serializers.CharField(max_length=5)
-    createByUserId=serializers.CharField(max_length=36)
+    # createByUserId=serializers.CharField(max_length=36)
     createTime=serializers.DateTimeField()
-    modifyByUserId=serializers.CharField(max_length=36)
+    # modifyByUserId=serializers.CharField(max_length=36)
     modifyTime=serializers.DateTimeField()
-    path=serializers.CharField()
+    # path=serializers.CharField()
     size=serializers.IntegerField()
-    extension=serializers.CharField()
+    # extension=serializers.CharField()
 
     def create(self,validated_data):
         return digitalAsset(**validated_data)

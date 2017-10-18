@@ -4,7 +4,7 @@ from documentService import views
 
 
 urlpatterns = [
-    url(r'^api/fileUpload', views.UploadFile.as_view()),
+    url(r'^api/handleFiles', views.HandleFiles.as_view()),
     url(r'^api/digitalAsset/',views.digitalAssets.as_view())
 ]
 

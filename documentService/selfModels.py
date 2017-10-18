@@ -20,10 +20,11 @@ class digitalAsset(object):
             db.addDigitalAsset(self)
         except Exception as ex:
             raise ex
-        finally:
-            db.release()
+        # finally:
+            # db.release()
 
-    def __init__(self,name,contentType,createByUserId,createTime,modifyByUserId,modifyTime,path,size,extension):
+    def __init__(self,id,name,contentType,createByUserId,modifyByUserId,path,size,extension):
+        self.id=id
         self.name=name
         self.contentType=contentType
         self.createByUserId=createByUserId

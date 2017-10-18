@@ -15,8 +15,7 @@ class authorization:
         result=JsonData()
         if(httpReponse.status_code==200):
             result.success=True
-            dic=json.loads(httpReponse.text)
-            print(dic['id'])           
+            dic=json.loads(httpReponse.text)        
             result.userid=dic['id']
             return result
         else:
