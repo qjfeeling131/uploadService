@@ -1,5 +1,5 @@
 import pymysql
-
+import uuid
 #We should make this helper to more smart, it will optimize this bolock in next Sprint!!!!
 class SQLHelper():
     
@@ -29,7 +29,10 @@ class SQLHelper():
         try:
             with self._connection.cursor() as cursor:
                 sql="insert into `mo_digitalasset` (`id`,`Name`,`ContentType`,`CreateTime`,`CreateByUserId`,`Path`,`Size`) values(%s,%s,%s,%s,%s,%s,%s)"
-                cursor.execute(sql,(digitalAsset.id,digitalAsset.name,digitalAsset.contentType,digitalAsset.createTime,digitalAsset.createByUserId,digitalAsset.path,digitalAsset.size))                
+                cursor.execute(sql,(digitalAsset.id,digitalAsset.name,digitalAsset.contentType,digitalAsset.createTime,digitalAsset.createByUserId,digitalAsset.path,digitalAsset.size))
+                digitalAssetItemSql="insert into `mo_digitalasset_Item`(`id`,`name`,`contentType`,`description`,`digitalAssetId`,`createTime`,`createByUserId`) values(%s,%s,%s,%s,%s,%s,%s)"
+                digitalAssetItemId=str(uuid.uuid4())
+                cursor.execute(digitalAssetItemSql,(digitalAssetItemId,digitalAsset.name,digitalAsset.contentType,digitalAsset.name+"."+digitalAsset.contentType,digitalAsset.id,digitalAsset.createTime,digitalAsset.createByUserId))          
             self._connection.commit()
         except pymysql.OperationalError as e:
             if e.errno==2006:
@@ -38,7 +41,6 @@ class SQLHelper():
             raise e      
         finally:
             cursor.close()
-
     def updateDigitalAsset(self,digitalAsset):
         try:
             with self._connection.cursor() as cursor:

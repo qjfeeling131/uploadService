@@ -103,11 +103,10 @@ class HandleFiles(APIView):
             response['Content-Disposition']='attachment;filename='+digitalasset.name+'.'+digitalasset.contentType
             response['Content-Length']=os.path.getsize(digitalasset.path)
             return response
-            # return Response(resultSerializer.data,status=status.HTTP_201_CREATED)
         except Exception as e:
             logging.error(e)
             self._restReult.message="The digital asset Id is incorrect, please check your digital id"
-            resultSerializer=restResultSerializer(resultSerializer)
+            resultSerializer=restResultSerializer(self._restReult)
             return Response(resultSerializer.data,status=HTTP_400_BAD_REQUEST)
 
 class digitalAssets(APIView):
